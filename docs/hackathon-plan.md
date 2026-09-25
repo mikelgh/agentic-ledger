@@ -10,12 +10,23 @@
 
 ## 1. 初赛参赛流程
 
+> 指定仓库：`gosimfoundation/hackathon-agenticapp26`（步骤 1 和 4 都指向同一个仓库）
+
 | 步骤 | 内容 | 状态 |
 |---|---|---|
-| 1 | 在指定 GitHub 仓库通过 issues 确认队伍和参赛主题 | [ ] 待确认 |
+| 1 | 在指定 GitHub 仓库通过 issues 确认队伍和参赛主题 | [ ] 待 9/26 课程后确认提交方式 |
 | 2 | 参赛主题通过后，注册 minimax 指定账号（周末课后发放） | [ ] 等待发放 |
 | 3 | 按天/按队伍领取 token，参加初赛 | [ ] 未开始 |
-| 4 | 初赛作品提交到指定 GitHub 仓库 | [ ] 未开始 |
+| 4 | 初赛作品提交到指定 GitHub 仓库 | [ ] 待确认：PR 形式 or Issue 链接形式？ |
+
+**待 9/26 课程确认：**
+- [ ] 作品提交方式：Fork + PR？还是在 Issue 里贴自建仓库链接？
+- [ ] 是否需要放在主办方 monorepo 的子目录里？
+- [ ] 提交格式/目录结构要求？
+
+**开发仓库（非提交目标，仅日常开发用）：**
+- GitHub: https://github.com/mikelgh/agentic-ledger （主开发）
+- Gitee: https://gitee.com/mikelgh/agentic-ledger （镜像备份）
 
 ---
 
@@ -42,14 +53,15 @@
 - [x] workspace-policy.toml 声明式契约
 - [x] manifest.json 工具清单
 - [x] SKILL.md Agent 技能文档
-- [x] 4 段式 smoke test + 失败路径测试
+- [x] 8 个契约测试全绿（含 4 段式 smoke test + 失败路径）
 - [x] 示例数据和报告已生成
-- [x] `cargo check` 通过（lib + bin）
+- [x] `cargo test` 全绿（9/25 验证通过）
+- [x] GitHub + Gitee 双仓库推送就绪
 
 ### 进行中 / 待完成
-- [ ] `cargo test` 全绿（依赖 octos-arc-ref，首次编译进行中）
 - [ ] Makepad UI 层（待 9/26 课程 + 官方环境包）
 - [ ] AutoSense OS / OctoScript 接入方式确认
+- [ ] 确认作品提交方式（PR / Issue 链接 / 其他）
 - [ ] GitHub issues 提交队伍和主题
 - [ ] minimax 账号注册
 
@@ -72,7 +84,7 @@
 | 优先级 | 行动 | 截止 | 备注 |
 |---|---|---|---|
 | P0 | 参加 9/26 课程，记录 Makepad 和 OctoScript 接入要点 | 9/26 | 核心依赖 |
-| P0 | 确认 `cargo test` 全绿 | 9/26 前 | 需 octos-arc-ref 依赖就位 |
+| P0 | 课程上确认作品提交方式（PR / Issue 链接 / 目录结构） | 9/26 | 决定后续流程 |
 | P1 | GitHub issues 提交队伍+主题 | 课程后 | 步骤 1 |
 | P1 | 注册 minimax 账号 | 收到链接后 | 步骤 2 |
 | P2 | Makepad UI 层接入 | 课程后 | 需官方环境包 |
