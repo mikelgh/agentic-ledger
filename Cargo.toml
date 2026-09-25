@@ -1,0 +1,30 @@
+[package]
+name = "agentic-ledger"
+version = "0.1.0"
+edition = "2024"
+description = "Agentic 消费管理 app for the GOSIM 2026 Agentic App hackathon: turns a natural-language intent plus raw transactions into a verified, deliverable spending report."
+authors = ["睿欣工场"]
+license = "Apache-2.0"
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "agentic-ledger"
+path = "src/main.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+eyre = "0.6"
+
+[dev-dependencies]
+# The harness contract's own types, used only to prove our lifecycle and
+# policy shape. Mirrors crates/app-skills/harness-starter-* in octos.
+octos-agent = { path = "../octos-arc-ref/crates/octos-agent" }
+octos-plugin = { path = "../octos-arc-ref/crates/octos-plugin" }
+tempfile = "3"
+toml = "0.8"
+
+[lints.rust]
+unsafe_code = "deny"

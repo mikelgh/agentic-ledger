@@ -1,0 +1,43 @@
+# Workspace policy for agentic-ledger.
+#
+# Copy to `.octos-workspace.toml` at the workspace root when running under the
+# octos harness. Field names follow the STABLE list in
+# octos-arc-ref/docs/OCTOS_HARNESS_DEVELOPER_GUIDE.md Part 1 — no INTERNAL
+# fields are depended on.
+
+[workspace]
+kind = "session"
+
+[version_control]
+provider = "git"
+auto_init = false
+trigger = "turn_end"
+fail_on_error = false
+
+[tracking]
+ignore = ["tmp/**", ".DS_Store"]
+
+[artifacts]
+# The deliverable: one markdown report per run.
+primary = "reports/spending-*.md"
+# Invented supporting role: the structured dataset the report is derived from,
+# so a reviewer can trace every number back to a line.
+dataset = "data/transactions.json"
+
+[validation]
+on_turn_end = []
+on_source_change = []
+on_completion = ["file_exists:$primary"]
+
+[spawn_tasks.analyze_spending]
+artifacts = ["primary"]
+on_verify = [
+    "file_exists:$primary",
+    "file_size_min:$primary:256",
+]
+on_deliver = []
+# Empty or unparseable input produces no file, so the validator above fails
+# and this fires — that is the demoable failure state.
+on_failure = [
+    "notify_user:消费报告未生成：请确认已运行 ingest_expenses，且输入至少含一行 `YYYY-MM-DD 描述 金额`。",
+]

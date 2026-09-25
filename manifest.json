@@ -1,0 +1,42 @@
+{
+  "name": "agentic-ledger",
+  "version": "0.1.0",
+  "author": "睿欣工场",
+  "description": "Agentic 消费管理：把自然语言意图与原始流水转成可逐条核对的分类支出报告。",
+  "timeout_secs": 60,
+  "tools": [
+    {
+      "name": "ingest_expenses",
+      "description": "Parse raw transaction lines (`YYYY-MM-DD <description> <amount>`) into data/transactions.json. Lines that are blank or start with # are ignored. Fails when no line yields a record.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Raw ledger text, one transaction per line."
+          }
+        },
+        "required": ["text"]
+      }
+    },
+    {
+      "name": "analyze_spending",
+      "description": "Aggregate data/transactions.json into reports/spending-<label>.md: per-category totals with share, top-5 expenses, and the date range. Runs as a supervised background task.",
+      "spawn_only": true,
+      "concurrency_class": "exclusive",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "Free-text report label; also derives the filename."
+          }
+        },
+        "required": ["label"]
+      }
+    }
+  ],
+  "discovery": {
+    "summary": "Agentic 消费管理 app：意图驱动的流水入库与支出分类报告生成，产物可逐条核对。"
+  }
+}
