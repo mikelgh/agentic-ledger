@@ -6,9 +6,35 @@
 /data/
 .octos-workspace.toml
 
+# Secrets — real credentials, never committed
+.env
+
 # Editors / OS
 .idea/
 .vscode/
 *.swp
 .DS_Store
 Thumbs.db
+
+# Temp and build artifacts
+/docs/temp_*/
+/docs/video/
+/docs/raw-capture.mp4
+/docs/agentic-mail-demo-final.mp4
+/docs/agentic-mail-demo.mp4
+/docs/audio/
+
+# One-off scripts
+/tools/patch_*.py
+/tools/fix_*.py
+/tools/add_*.py
+/tools/batch_*.py
+/tools/poll_*.py
+/tools/resubmit_*.py
+/tools/test_*.py
+/tools/assemble_final_v2.py
+/tools/push-via-api-v2.py
+
+# Scratch
+.scratch/
+vendor/
